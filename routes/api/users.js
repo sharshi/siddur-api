@@ -11,9 +11,6 @@ const validateLoginInput = require('../../validation/login');
 
 const User = require('../../models/User');
 
-router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
-
-
 router.post('/register', (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   
@@ -34,7 +31,6 @@ router.post('/register', (req, res) => {
         password: req.body.password
       })
 
-
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
@@ -53,9 +49,7 @@ router.post('/register', (req, res) => {
             })
             .catch(err => console.log(err));
         });
-      });
-
-
+      }); 
     }
   })
 })
@@ -96,7 +90,6 @@ router.post('/login', (req, res) => {
             return res.status(400).json({ password: 'Incorrect password' });
           }
         })
-
     })
 })
 
