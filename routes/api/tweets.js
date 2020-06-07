@@ -52,7 +52,6 @@ router.post('/',
     newTweet.save()
       .then(tweet => res.json(tweet));
   }
-
 )
 
 module.exports = router;
