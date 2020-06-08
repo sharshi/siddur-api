@@ -7,6 +7,8 @@ import jwt_decode from "jwt-decode";
 import { setAuthToken } from "./util/session_api_util";
 import { logout } from "./actions/session_actions";
 
+import { findParagraph } from "./actions/siddur_actions";
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
 
@@ -34,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // jwtToken not found 
     store = configureStore({});
   }
+
+  window.dispatch = store.dispatch;
+  window.findParagraph = findParagraph;
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root)

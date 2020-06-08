@@ -8,7 +8,7 @@ export const nextempty = () => {
   return axios.get(`/api/siddur/nextempty`);
 };
 
-export const paragraph = name => {
+export const findParagraph = name => {
    return axios.get(`/api/siddur/${name}`);
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -15,15 +15,7 @@ class SignupForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
   }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push("/login");
-    }
-
-    this.setState({ errors: nextProps.errors });
-  }
-
+  
   update(field) {
     return e =>
       this.setState({
@@ -91,6 +83,9 @@ class SignupForm extends React.Component {
             {this.renderErrors()}
           </div>
         </form>
+        <p>
+          Did you mean to <Link to="login">login</Link>?
+        </p>
       </div>
     );
   }

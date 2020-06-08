@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -13,15 +13,6 @@ class LoginForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
-  }
-
-  // Once the user has been authenticated, redirect to the Tweets page
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
-      this.props.history.push("/");
-    }
-
-    this.setState({ errors: nextProps.errors });
   }
 
   update(field) {
@@ -39,7 +30,7 @@ class LoginForm extends React.Component {
       password: this.state.password
     };
 
-    this.props.login(user);
+    this.props.login(user, this.props.history);
   }
 
   // Render the session errors if there are any
@@ -76,6 +67,9 @@ class LoginForm extends React.Component {
             {this.renderErrors()}
           </div>
         </form>
+        <p>
+          Did you mean to <Link to="signup">signup</Link>?
+        </p>
       </div>
     );
   }

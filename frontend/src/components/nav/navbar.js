@@ -35,7 +35,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <nav>
-        <Link to='/'><h1>Shafeh.org Siddur UTIL</h1></Link>
+        <Link to='/'><h1>Shafeh.org: Siddur UTIL</h1></Link>
         {this.getLinks()}
       </nav>
     );

@@ -23,7 +23,15 @@ router.get('/nextempty', (req, res) => {
 
 router.get('/:paragraph', (req, res) => {
   Siddur.findOne({ 'name': req.params.paragraph })
-    .then(paragraphs => res.json(paragraphs))
+    .then(paragraph => {
+      if (paragraph) {
+        res.json(paragraph)
+      } else {
+        res.status(404).json({
+          paragraphnotfound: 'No paragraph found'
+        })
+      }
+    })
     .catch(err => res.status(404).json({
       paragraphnotfound: 'No paragraph found'
     }));

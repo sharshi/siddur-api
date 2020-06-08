@@ -12,7 +12,12 @@ export const nextempty = () => dispatch => {
     .then(paragraph => dispatch(receiveSiddur(paragraph.data)));
 };
 
-export const updateParagraph = (paragraph) => dispatch => {
+export const findParagraph = name => dispatch => {
+  SiddurUTIL.findParagraph(name)
+    .then(paragraph => dispatch(receiveSiddur(paragraph.data)));
+};
+
+export const updateParagraph = paragraph => dispatch => {
   SiddurUTIL.updateParagraph(paragraph)
     .then(paragraph => dispatch(receiveSiddur(paragraph.data)));
 };
