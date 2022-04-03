@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     .sort({ date: -1 })
     .then(paragraphs => res.json(paragraphs))
     .catch(err => res.status(404).json({
-      siddurnotfound: 'No tweets found'
+      siddurnotfound: 'No paragraphs found'
     }));
 });
 

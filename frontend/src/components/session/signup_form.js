@@ -83,6 +83,11 @@ class SignupForm extends React.Component {
             {this.renderErrors()}
           </div>
         </form>
+        <ul>
+          {Object.keys(this.state.errors).map((error, i) => (
+            <li key={`error-${i}`}>{this.state.errors[error]}</li>
+          ))}
+        </ul>
         <p>
           Did you mean to <Link to="login">login</Link>?
         </p>
