@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "build": "npm install --prefix frontend && npm run build --prefix frontend",
     "server": "nodemon app.js",
     "server:debug": "nodemon --inspect app.js",
     "frontend-install": "npm install --prefix frontend",
