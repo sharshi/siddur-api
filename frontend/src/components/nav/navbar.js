@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./navbar.scss";
+import { Button } from '@mantine/core';
+
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +20,7 @@ class NavBar extends React.Component {
       return (
         <div>
           <p>Welcome @{currentUser.handle}</p>
-          <button onClick={this.logoutUser}>Logout</button>
+          <Button onClick={this.logoutUser}>Logout</Button>
         </div>
       );
     } else {
@@ -35,7 +36,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <nav>
-        <Link to='/'><h1>Shafeh.org: Siddur UTIL</h1></Link>
+        <Link to='/'><h1>Siddur, by Shafeh.org</h1></Link>
         {this.getLinks()}
       </nav>
     );
