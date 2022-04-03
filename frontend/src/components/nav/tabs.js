@@ -1,12 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
     Group,
     createStyles,
-    Menu,
-    Center,
 } from "@mantine/core"
-import { ChevronDown } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
     links: {
