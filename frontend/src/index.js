@@ -11,7 +11,27 @@ import { findParagraph } from "./actions/siddur_actions";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
-
+  const navbar = {
+    navbar: {
+      tabs: [
+        {
+          label: "Home",
+          showWhenLoggedOut: true,
+          url: "#/"
+        },
+        {
+          label: "Siddur",
+          showWhenLoggedOut: true,
+          url: '#/siddur',
+        },
+        {
+          label: "Edit Siddur",
+          showWhenLoggedOut: false,
+          url: '#/siddur/edit',
+        },
+      ]
+    }
+  };
   // returning signed in user
   if (localStorage.jwtToken) {
     //Set the token as a common header for all axios requests
@@ -20,7 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // sets preloadedState to the user pulled from storage
     const preloadedState = {
-      session: { isAuthenticated: true, user: decodedUser }
+      session: { isAuthenticated: true, user: decodedUser },
+      ui: navbar
     };
 
     store = configureStore(preloadedState);
@@ -34,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   } else {
     // jwtToken not found 
-    store = configureStore({});
+    store = configureStore({ ui: navbar});
   }
 
   window.dispatch = store.dispatch;

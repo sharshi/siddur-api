@@ -93,8 +93,6 @@ router.post('/login', (req, res) => {
     })
 })
 
-
-// You may want to start commenting in information about your routes so that you can find the appropriate ones quickly.
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.json({
     id: req.user.id,
@@ -102,8 +100,5 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     email: req.user.email
   });
 })
-
-
-
 
 module.exports = router;

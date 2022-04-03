@@ -17,7 +17,7 @@ router.get('/nextempty', (req, res) => {
   Siddur.findOne({ 'name': ""})
     .then(paragraphs => res.json(paragraphs))
     .catch(err => res.status(404).json({
-      paragraphnotfound: 'No empty paragraphs found'
+      paragraphnotfound: `No empty paragraphs found: ${err.message}`
     }));
 });
 

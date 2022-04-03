@@ -8,8 +8,7 @@ class SignupForm extends React.Component {
       email: "",
       handle: "",
       password: "",
-      password2: "",
-      errors: {}
+      password2: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,6 +16,9 @@ class SignupForm extends React.Component {
   }
   
   update(field) {
+    if (field === "handle") {
+      field = field.toLowerCase();
+    }
     return e =>
       this.setState({
         [field]: e.currentTarget.value
@@ -38,9 +40,9 @@ class SignupForm extends React.Component {
   renderErrors() {
     return (
       <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
-        ))}
+        {this.props.errors ?  Object.keys(this.props.errors).map((error, i) => (
+          <li key={`error-${i}`}>{this.props.errors[error]}</li>
+        )) : ""}
       </ul>
     );
   }
@@ -62,7 +64,7 @@ class SignupForm extends React.Component {
               type="text"
               value={this.state.handle}
               onChange={this.update("handle")}
-              placeholder="Handle"
+              placeholder="Username"
             />
             <br />
             <input
@@ -83,11 +85,6 @@ class SignupForm extends React.Component {
             {this.renderErrors()}
           </div>
         </form>
-        <ul>
-          {Object.keys(this.state.errors).map((error, i) => (
-            <li key={`error-${i}`}>{this.state.errors[error]}</li>
-          ))}
-        </ul>
         <p>
           Did you mean to <Link to="login">login</Link>?
         </p>

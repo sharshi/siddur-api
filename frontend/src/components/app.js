@@ -8,7 +8,9 @@ import MainPage from "./main/main_page";
 import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
 import Siddur from "./main/siddur";
-import SiddurEdit from "./main/siddur_edit";
+import SiddurEdit from "./main/siddur_edit_container";
+
+import './body.css';
 
 const App = () => (
   <section>
