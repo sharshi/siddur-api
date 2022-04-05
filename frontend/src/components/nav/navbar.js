@@ -9,6 +9,7 @@ import {
   Menu,
   Burger,
   Button,
+  Container,
 } from '@mantine/core';
 import { useBooleanToggle } from '@mantine/hooks';
 import {
@@ -58,7 +59,7 @@ const useStyles = createStyles((theme) => ({
   inner: {
     height: 56,
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
 
@@ -74,6 +75,7 @@ export default function HeaderTabs({ user, ...props }) {
 
   return (
     <Header height={56} mb={120}>
+      <Container>
         <div className={classes.inner}>
             <Text>Siddur by Shafeh.org</Text>
 
@@ -120,6 +122,7 @@ export default function HeaderTabs({ user, ...props }) {
               </>
             }
         </div>
+      </Container>
     </Header>
   );
 }

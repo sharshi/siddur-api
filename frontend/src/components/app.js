@@ -11,17 +11,20 @@ import Siddur from "./main/siddur";
 import SiddurEdit from "./main/siddur_edit_container";
 
 import './body.css';
+import { Container } from "@mantine/core";
 
 const App = () => (
   <section>
     <NavBarContainer />
-    <Switch>
-      <Route exact path="/" component={MainPage} />
-      <AuthRoute exact path="/login" component={LoginFormContainer} />
-      <AuthRoute exact path="/signup" component={SignupFormContainer} />
-      <Route exact path="/siddur" component={Siddur} />
-      <ProtectedRoute exact path="/siddur/edit" component={SiddurEdit} />
-    </Switch>
+    <Container>
+      <Switch>
+        <Route exact path="/" component={MainPage} />
+        <AuthRoute exact path="/login" component={LoginFormContainer} />
+        <AuthRoute exact path="/signup" component={SignupFormContainer} />
+        <Route exact path="/siddur" component={Siddur} />
+        <ProtectedRoute exact path="/siddur/edit" component={SiddurEdit} />
+      </Switch>
+    </Container>
     <Footer />
   </section>
 );
