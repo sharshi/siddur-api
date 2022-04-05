@@ -1,77 +1,145 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
+import {
+  Paper,
+  createStyles,
+  TextInput,
+  PasswordInput,
+  Checkbox,
+  Button,
+  Title,
+  Text,
+  Anchor,
+} from '@mantine/core';
 
-class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
+const useStyles = createStyles((theme) => ({
+  wrapper: {
+    minHeight: 900,
+    backgroundSize: 'cover',
+    backgroundImage:
+      'url(https://images.unsplash.com/photo-1484242857719-4b9144542727?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1280&q=80)',
+  },
 
-    this.state = {
-      email: "",
-      password: ""
-    };
+  form: {
+    borderRight: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
+      }`,
+    minHeight: 900,
+    maxWidth: 450,
+    paddingTop: 80,
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
-  }
+    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+      maxWidth: '100%',
+    },
+  },
 
-  update(field) {
-    return e =>
-      this.setState({
-        [field]: e.currentTarget.value
-      });
-  }
+  title: {
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+  },
 
-  handleSubmit(e) {
+  logo: {
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    width: 120,
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+}));
+
+const LoginForm = (props) => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { classes } = useStyles();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     let user = {
-      email: this.state.email,
-      password: this.state.password
+      email,
+      password
     };
 
-    this.props.login(user, this.props.history);
+    props.login(user, props.history);
   }
 
   // Render the session errors if there are any
-  renderErrors() {
+  const renderErrors = () => {
     return (
       <ul>
-        {this.props.errors ? Object.keys(this.props.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.props.errors[error]}</li>
+        {props.errors ? Object.keys(props.errors).map((error, i) => (
+          <li key={`error-${i}`}>{props.errors[error]}</li>
         )) : ""}
       </ul>
     );
   }
-
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <input
-              type="text"
-              value={this.state.email}
-              onChange={this.update("email")}
-              placeholder="Email"
-            />
-            <br />
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.update("password")}
-              placeholder="Password"
-            />
-            <br />
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
-          </div>
-        </form>
-        <p>
+    return <div className={classes.wrapper}>
+      <Paper onSubmit={handleSubmit} className={classes.form} radius={0} p={30}>
+        <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
+          Welcome back to Shafeh Siddur Manager!
+        </Title>
+        <TextInput
+          label="Email address"
+          placeholder="Email" size="md" 
+          type="text"
+          value={email}
+          onChange={e => setEmail(e.currentTarget.value)}
+        />
+        <PasswordInput
+          type="password"
+          label="Password"
+          placeholder="Your password" 
+          mt="md"
+          size="md"
+          value={password}
+          onChange={e => setPassword(e.currentTarget.value)}
+          />
+        <br />
+        <Button 
+          type="submit"
+          value="Submit"
+          onClick={handleSubmit}
+          fullWidth
+          mt="xl"
+          size="md"
+        >
+          Login
+        </Button>
+        {renderErrors()}
+        <Text align="center" mt="md">
           Did you mean to <Link to="signup">signup</Link>?
-        </p>
-      </div>
-    );
+        </Text>
+      </Paper>
+    </div>
   }
-}
+
 
 export default withRouter(LoginForm);
+
+
+
+
+export function AuthenticationImage() {
+  const { classes } = useStyles();
+  return (
+    <div className={classes.wrapper}>
+      <Paper className={classes.form} radius={0} p={30}>
+        <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
+          Welcome back to Shafeh Siddur Manager!
+        </Title>
+
+        <TextInput label="Email address" placeholder="hello@gmail.com" size="md" />
+        <PasswordInput label="Password" placeholder="Your password" mt="md" size="md" />
+        <Checkbox label="Keep me logged in" mt="xl" size="md" />
+        <Button fullWidth mt="xl" size="md">
+          Login
+        </Button>
+
+        <Text align="center" mt="md">
+          Don't have an account?{' '}
+          <Link to="signup">Register</Link>
+        </Text>
+      </Paper>
+    </div >
+  );
+}
