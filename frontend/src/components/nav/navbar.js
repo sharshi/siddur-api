@@ -26,7 +26,6 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     borderBottom: `1px solid ${theme.colorScheme === 'dark' ? 'transparent' : theme.colors.gray[2]
       }`,
-    marginBottom: 120,
   },
 
   mainSection: {
@@ -74,7 +73,7 @@ export default function HeaderTabs({ user, ...props }) {
   const [userMenuOpened, setUserMenuOpened] = useState(false);
 
   return (
-    <Header height={56} mb={120}>
+    <Header height={56}>
       <Container>
         <div className={classes.inner}>
             <Text>Siddur by Shafeh.org</Text>
