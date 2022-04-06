@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Text, Group, Badge, createStyles, Center, Button } from '@mantine/core';
+import { Card, Image, Text, Group, Badge, createStyles, Button } from '@mantine/core';
 import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
