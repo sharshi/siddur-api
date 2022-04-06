@@ -9,8 +9,9 @@ import {
   Button,
   Title,
   Text,
-  Anchor,
 } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
+import { FaceIdError } from 'tabler-icons-react'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -62,6 +63,16 @@ const LoginForm = (props) => {
 
     props.login(user, props.history);
   }
+
+  props.errors && Object.keys(props.errors).forEach(error => {
+    showNotification({
+      message: props.errors[error],
+      color: 'red',
+      icon: <FaceIdError />,
+      position: "top-center",
+    });
+  });
+
 
   // Render the session errors if there are any
   const renderErrors = () => {
