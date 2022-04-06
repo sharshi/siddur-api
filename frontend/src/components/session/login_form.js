@@ -47,7 +47,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const LoginForm = (props) => {
+const LoginForm = ({ login, errors, history }) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -61,12 +61,12 @@ const LoginForm = (props) => {
       password
     };
 
-    props.login(user, props.history);
+    login(user, history);
   }
 
-  props.errors && Object.keys(props.errors).forEach(error => {
+  errors && Object.keys(errors).forEach(error => {
     showNotification({
-      message: props.errors[error],
+      message: errors[error],
       color: 'red',
       icon: <FaceIdError />,
       position: "top-center",
@@ -78,8 +78,8 @@ const LoginForm = (props) => {
   const renderErrors = () => {
     return (
       <ul>
-        {props.errors ? Object.keys(props.errors).map((error, i) => (
-          <li key={`error-${i}`}>{props.errors[error]}</li>
+        {errors ? Object.keys(errors).map((error, i) => (
+          <li key={`error-${i}`}>{errors[error]}</li>
         )) : ""}
       </ul>
     );
