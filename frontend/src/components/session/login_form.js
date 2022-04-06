@@ -73,8 +73,6 @@ const LoginForm = ({ login, errors, history }) => {
     });
   });
 
-
-  // Render the session errors if there are any
   const renderErrors = () => {
     return (
       <ul>
@@ -87,7 +85,7 @@ const LoginForm = ({ login, errors, history }) => {
     return <div className={classes.wrapper}>
       <Paper onSubmit={handleSubmit} className={classes.form} radius={0} p={30}>
         <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
-          Welcome back to Shafeh Siddur Manager!
+          Welcome back to Shafeh!
         </Title>
         <TextInput
           label="Email address"

@@ -19,6 +19,7 @@ import {
   ChevronDown,
 } from 'tabler-icons-react';
 import Tabs from './tabs_container';
+import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -76,7 +77,7 @@ export default function HeaderTabs({ user, ...props }) {
     <Header height={56}>
       <Container>
         <div className={classes.inner}>
-            <Text>Siddur by Shafeh.org</Text>
+          <Text component={Link} to='/' >Shafeh.org</Text>
 
             <Burger
               opened={opened}
