@@ -12,25 +12,23 @@ import { findParagraph } from "./actions/siddur_actions";
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   const navbar = {
-    navbar: {
-      tabs: [
-        {
-          label: "Home",
-          showWhenLoggedOut: true,
-          url: "#/"
-        },
-        {
-          label: "Siddur",
-          showWhenLoggedOut: true,
-          url: '#/siddur',
-        },
-        {
-          label: "Edit Siddur",
-          showWhenLoggedOut: false,
-          url: '#/siddur/edit',
-        },
-      ]
-    }
+    navbar: [
+      {
+        label: "Home",
+        showWhenLoggedOut: true,
+        url: "/"
+      },
+      {
+        label: "Siddur",
+        showWhenLoggedOut: true,
+        url: '/siddur',
+      },
+      {
+        label: "Edit Siddur",
+        showWhenLoggedOut: false,
+        url: '/siddur/edit',
+      },
+    ]
   };
   // returning signed in user
   if (localStorage.jwtToken) {
@@ -41,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // sets preloadedState to the user pulled from storage
     const preloadedState = {
       session: { isAuthenticated: true, user: decodedUser },
-      ui: navbar
+      ui: {tabs: navbar}
     };
 
     store = configureStore(preloadedState);
@@ -55,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   } else {
     // jwtToken not found 
-    store = configureStore({ ui: navbar});
+    store = configureStore({ ui: { tabs: navbar }});
   }
 
   window.dispatch = store.dispatch;

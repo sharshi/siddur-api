@@ -10,6 +10,7 @@ import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
 import Siddur from "./main/siddur";
 import SiddurEdit from "./main/siddur_edit_container";
+import { ErrorPage } from "./util/error";
 
 import './body.css';
 import { MantineProvider, Container } from "@mantine/core";
@@ -25,6 +26,7 @@ const App = () => (
           <AuthRoute exact path="/signup" component={SignupFormContainer} />
           <Route exact path="/siddur" component={Siddur} />
           <ProtectedRoute exact path="/siddur/edit" component={SiddurEdit} />
+          <Route path="*" component={ErrorPage} />
         </Switch>
       </Container>
       <Footer />

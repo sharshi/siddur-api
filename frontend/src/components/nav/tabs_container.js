@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 
-import Tabs from "./tabs";
+import Tabs, { MobileMenu } from "./tabs";
 
 const mapStateToProps = state => {
-    console.log(state.ui.navbar.tabs)
     return {
         loggedIn: state.session.isAuthenticated,
         tabs: state.ui.navbar.tabs
@@ -11,3 +10,4 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(Tabs);
+export const MobileTabs = connect(mapStateToProps)(MobileMenu);

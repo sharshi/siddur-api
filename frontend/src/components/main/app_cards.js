@@ -32,7 +32,15 @@ const apps = [
 export default function AppCards() {
   return (
     <>
-      <SimpleGrid cols={3} m={20}>
+      <SimpleGrid
+        cols={3}
+        spacing="lg"
+        breakpoints={[
+          { maxWidth: 980, cols: 3, spacing: 'md' },
+          { maxWidth: 755, cols: 2, spacing: 'sm' },
+          { maxWidth: 600, cols: 1, spacing: 'sm' },
+        ]}
+      >
         {apps.map(app => {
           return (
             <AppCard key={app.name} app={app} />
