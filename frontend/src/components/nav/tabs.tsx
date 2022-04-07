@@ -11,7 +11,7 @@ import {
 } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 import { MenuItem } from './MenuItem';
-import { ITab } from "../../reducers/ui_reducer";
+import { ITab } from '../../types';
 
 const useStyles = createStyles((theme) => ({
     links: {
@@ -56,10 +56,13 @@ export const MobileMenu = ({ tabs, loggedIn }: ITabsProps) => {
     if (!tabs) {
         return null;
     }
-    const filteredItems = tabs.filter((tab) => !loggedIn && !tab.showWhenLoggedOut);
+
+    const filteredItems = tabs.filter((tab) => !(!loggedIn && !tab.showWhenLoggedOut));
 
     const menuItems = filteredItems.map((item) => {
-        return <MenuItem key={item.label} item={item} />
+        return <div key={item.label}>
+            <MenuItem item={item} />
+        </div>
     });
 
     return (
@@ -103,7 +106,7 @@ export const Tabs = ({ tabs, loggedIn }: ITabsProps) => {
     const items = filteredItems.map((link: any) => {
         return (
             <Text
-                component={Link}
+                component={Link as any}
                 to={link.url}
                 key={link.label}
                 className={classes.link}

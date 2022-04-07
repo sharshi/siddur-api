@@ -1,7 +1,16 @@
 import React from "react";
 import { Menu } from "@mantine/core";
 import { Link } from "react-router-dom";
+import { ITab } from "../../types";
 
-export const MenuItem = ({ item }: any) => {
-    return <Menu.Item component={Link} to={item.link} key={item.label}>{item.label}</Menu.Item>
+interface IMenuItemProps {
+    item: ITab,
+}
+
+export const MenuItem = ({ item }: IMenuItemProps) => {
+    return (
+        <Menu.Item component={Link} to={item.url}>
+            {item.label}
+        </Menu.Item>
+    );
 }

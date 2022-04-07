@@ -1,10 +1,5 @@
 import { combineReducers } from "redux";
-
-export interface ITab {
-    label: string;
-    showWhenLoggedOut: boolean;
-    url: string;
-}
+import { ITab } from "../types";
 
 const tabs: ITab[] = [
     {

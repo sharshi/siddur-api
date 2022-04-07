@@ -5,7 +5,6 @@ import {
   createStyles,
   TextInput,
   PasswordInput,
-  Checkbox,
   Button,
   Title,
   Text,
@@ -124,31 +123,3 @@ const LoginForm = ({ login, errors, history }) => {
 
 
 export default withRouter(LoginForm);
-
-
-
-
-export function AuthenticationImage() {
-  const { classes } = useStyles();
-  return (
-    <div className={classes.wrapper}>
-      <Paper className={classes.form} radius={0} p={30}>
-        <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
-          Welcome back to Shafeh Siddur Manager!
-        </Title>
-
-        <TextInput label="Email address" placeholder="hello@gmail.com" size="md" />
-        <PasswordInput label="Password" placeholder="Your password" mt="md" size="md" />
-        <Checkbox label="Keep me logged in" mt="xl" size="md" />
-        <Button fullWidth mt="xl" size="md">
-          Login
-        </Button>
-
-        <Text align="center" mt="md">
-          Don't have an account?{' '}
-          <Link to="signup">Register</Link>
-        </Text>
-      </Paper>
-    </div >
-  );
-}

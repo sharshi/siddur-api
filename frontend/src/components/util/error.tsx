@@ -6,7 +6,7 @@ export function ErrorPage() {
     return (
         <>
             <Text>404</Text>
-            <Button component={Link} to="/">Go to Home Page</Button>
+            <Button component={Link as any} to="/">Go to Home Page</Button>
         </>
     );
 }
