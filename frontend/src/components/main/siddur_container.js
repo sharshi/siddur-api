@@ -9,19 +9,17 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Siddur extends React.Component {
-
-  render() {
-    return (
-      <>
-        <h1>Siddur</h1>
-        <Link to={{
-          pathname: '/siddur/edit',
-          fromNotifications: "findParagraph will return _id"
-        }}>Edit</Link>
-      </>
-    )
-  }
+const Siddur = ({ findParagraph }) => {
+  
+  return (
+    <>
+      <h1>Siddur</h1>
+      <Link to={{
+        pathname: '/siddur/edit',
+        fromNotifications: "findParagraph will return _id"
+      }}>Edit</Link>
+    </>
+  )
 }
 
 export default connect(

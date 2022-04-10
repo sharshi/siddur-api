@@ -56,9 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore({ ui: { tabs: navbar }});
   }
 
-  window.dispatch = store.dispatch;
-  window.findParagraph = findParagraph;
-
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root)
 });

@@ -9,7 +9,7 @@ interface IMenuItemProps {
 
 export const MenuItem = ({ item }: IMenuItemProps) => {
     return (
-        <Menu.Item component={Link} to={item.url}>
+        <Menu.Item component={Link as any} to={item.url}>
             {item.label}
         </Menu.Item>
     );
