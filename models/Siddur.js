@@ -18,6 +18,9 @@ const SiddurSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {
+  collection: 'siddur'
+}
+);
 
-module.exports = Tweet = mongoose.model('siddur', SiddurSchema);
+module.exports = Siddur = mongoose.model('Siddur', SiddurSchema);
