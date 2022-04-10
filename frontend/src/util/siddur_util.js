@@ -13,5 +13,6 @@ export const findParagraph = name => {
 };
 
 export const updateParagraph = paragraph => {
-  return axios.post(`/api/siddur/`, paragraph);
+  console.log(paragraph, 'updateParagraph');
+  return axios.patch(`/api/siddur/`, paragraph);
 };

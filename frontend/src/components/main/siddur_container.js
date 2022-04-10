@@ -1,28 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { findParagraph } from "../../actions/siddur_actions";
+import { fetchSiddur, updateParagraph,  } from "../../actions/siddur_actions";
+import Siddur from "./siddur";
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    findParagraph: paragraph => dispatch(findParagraph(paragraph))
+    siddurParagraphs: state.entities.siddur,
   };
 };
 
-const Siddur = ({ findParagraph }) => {
-  
-  return (
-    <>
-      <h1>Siddur</h1>
-      <Link to={{
-        pathname: '/siddur/edit',
-        fromNotifications: "findParagraph will return _id"
-      }}>Edit</Link>
-    </>
-  )
-}
+const mapDispatchToProps = dispatch => {
+  return {
+    // findParagraph: paragraph => dispatch(findParagraph(paragraph)),
+    fetchSiddur: () => dispatch(fetchSiddur()),
+    updateParagraph: paragraphId => dispatch(updateParagraph(paragraphId)),
+  };
+};
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Siddur);

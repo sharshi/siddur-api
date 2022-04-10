@@ -8,7 +8,7 @@ import { NotificationsProvider } from '@mantine/notifications';
 import MainPage from "./main/main_page";
 import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
-import Siddur from "./main/siddur";
+import Siddur from "./main/siddur_container";
 import SiddurEdit from "./main/siddur_edit_container";
 import { ErrorPage } from "./util/error";
 

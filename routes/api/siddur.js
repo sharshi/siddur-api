@@ -31,17 +31,18 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     });
 });
 
-router.post('/',
-  passport.authenticate('jwt', { session: false }),
+router.patch('/',
+  // passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { _id, text, tags, name } = req.body;
+    console.log(text, "this is the updated text")
     const updates = {};
     if (name) updates.name = name;
     if (tags) updates.tags = tags;
     if (text) updates.text = text;
 
     Siddur.findByIdAndUpdate({ _id }, updates, { new: true })
-      .then(paragraphs => res.json(paragraphs))
+      .then(paragraph => res.json(paragraph))
       .catch(err => res.status(404).json({
         error: err
       }));
