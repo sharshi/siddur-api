@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import {
   Paper,
@@ -46,7 +46,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const LoginForm = ({ login, errors, history }) => {
+const LoginForm = ({ login, errors, history, clearErrors }) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -63,14 +63,19 @@ const LoginForm = ({ login, errors, history }) => {
     login(user, history);
   }
 
-  errors && Object.keys(errors).forEach(error => {
-    showNotification({
-      message: errors[error],
-      color: 'red',
-      icon: <FaceIdError />,
-      position: "top-center",
-    });
-  });
+  useEffect(() => {
+    if (errors) {
+      Object.keys(errors).forEach(error => {
+        showNotification({
+          message: errors[error],
+          color: 'red',
+          icon: <FaceIdError />,
+          position: "top-center",
+          onClose: () => clearErrors(),
+        });
+      });
+    }
+  }, [errors]);
 
   const renderErrors = () => {
     return (
