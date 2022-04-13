@@ -13,6 +13,5 @@ export const findParagraph = name => {
 };
 
 export const updateParagraph = paragraph => {
-  console.log(paragraph, 'updateParagraph');
   return axios.patch(`/api/siddur/`, paragraph);
 };
