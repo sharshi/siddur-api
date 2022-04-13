@@ -26,5 +26,5 @@ const UIReducer = (state = {tabs}, action: any ) => {
     }
 };
 export default combineReducers({
-    navbar: UIReducer
+    tabs: UIReducer
 });

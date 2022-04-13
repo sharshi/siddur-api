@@ -5,7 +5,7 @@ import Tabs, { MobileMenu } from "./tabs";
 const mapStateToProps = state => {
     return {
         loggedIn: state.session.isAuthenticated,
-        tabs: state.ui.navbar.tabs
+        tabs: state.ui.tabs
     }
 };
 
