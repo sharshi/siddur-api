@@ -7,7 +7,8 @@ const Siddur = require('../../models/Siddur');
 router.get('/', (req, res) => {
   Siddur.find()
     .sort({ date: -1 })
-    .then(paragraphs => res.json(paragraphs))
+    .limit(0)
+    .then(paragraphs => res.status(404).json(paragraphs))
     .catch(err => res.status(404).json({
       siddurnotfound: 'No paragraphs found'
     }));
@@ -24,15 +25,14 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   newSiddur.save()
     .then(siddur => res.json(siddur))
     .catch(err => {
-      console.log(err)
       res.status(400).json({
-        siddur: 'Siddur not saved'
+        siddur: 'Siddur not saved' + err.message
       })
     });
 });
 
 router.patch('/',
-  // passport.authenticate('jwt', { session: false }),
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { _id, text, tags, name } = req.body;
     console.log(text, "this is the updated text")
@@ -50,7 +50,7 @@ router.patch('/',
 );
 
 router.get('/nextempty', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Siddur.findOne({ 'name': ""})
+  Siddur.findOne({ name: 'notSet'})
     .then(paragraphs => res.json(paragraphs))
     .catch(err => res.status(404).json({
       paragraphnotfound: `No empty paragraphs found: ${err.message}`
