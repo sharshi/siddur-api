@@ -1,16 +1,20 @@
 import { connect } from "react-redux";
-import { updateParagraph } from "../../actions/siddur_actions";
+import { fetchSiddur, updateParagraph, clearErrors } from "../../actions/siddur_actions";
 import SiddurEdit from "./siddur_edit";
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
     return {
-        siddur: state.entities.siddur[0]
+        siddurParagraphs: state.entities.siddur,
+        error: state.errors.entities,
+        loggedIn: state.session.isAuthenticated,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateParagraph: paragraph => dispatch(updateParagraph(paragraph))
+        fetchSiddur: () => dispatch(fetchSiddur()),
+        updateParagraph: paragraphId => dispatch(updateParagraph(paragraphId)),
+        clearErrors: () => dispatch(clearErrors()),
     };
 };
 

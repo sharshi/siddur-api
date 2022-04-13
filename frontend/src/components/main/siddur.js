@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Paragraph } from "./paragraph";
+import { Text} from '@mantine/core';
 
-const Siddur = ({ fetchSiddur, siddurParagraphs, updateParagraph }) => {
+const Siddur = ({ fetchSiddur, siddurParagraphs }) => {
   useEffect(() => {
     fetchSiddur();
   }, [fetchSiddur]);
 
-  const paragraphs = Object.keys(siddurParagraphs).map(key => {
+  const paragraphNames = Object.keys(siddurParagraphs).map(key => {
     const paragraph = siddurParagraphs[key];
-    return <Paragraph paragraph={paragraph} updateParagraph={updateParagraph} key={paragraph._id} />;
+    return <Text children={paragraph.name} key={paragraph._id} />;
   });
 
   return (
     <>
       <h1>Siddur</h1>
-      {paragraphs}
+      {paragraphNames}
     </>
   )
 }

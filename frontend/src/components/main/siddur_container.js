@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchSiddur, updateParagraph,  } from "../../actions/siddur_actions";
+import { fetchSiddur, updateParagraph, clearErrors } from "../../actions/siddur_actions";
 import Siddur from "./siddur";
 
 const mapStateToProps = state => {
@@ -10,9 +10,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // findParagraph: paragraph => dispatch(findParagraph(paragraph)),
     fetchSiddur: () => dispatch(fetchSiddur()),
-    updateParagraph: paragraphId => dispatch(updateParagraph(paragraphId)),
   };
 };
 
