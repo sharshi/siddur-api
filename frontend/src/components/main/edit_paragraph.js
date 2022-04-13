@@ -7,7 +7,7 @@ import {
     Group,
 } from '@mantine/core';
 
-export const Paragraph = ({ paragraph, updateParagraph }) => {
+export const Paragraph = ({ paragraph, updateParagraph, loggedIn }) => {
     const { name, text, tags, _id } = paragraph;
     const [editorState, setEditorState] = useState(text);
     const theme = useMantineTheme();
@@ -21,19 +21,14 @@ export const Paragraph = ({ paragraph, updateParagraph }) => {
         </Badge>
     ));
 
-    // const handleUpdate = (data) => {
-    //     onChange(data);
-    //     updateParagraph({ _id, tags, name, text: value });
-    // };
-
     return (
         <>
             <h1>{ name }</h1>
-            <RichTextEditor value={editorState} onChange={setEditorState}  />
+            <RichTextEditor readOnly={!loggedIn} value={editorState} onChange={setEditorState}  />
             <Group>
                 { styledTags }
             </Group>
-            <Button onClick={() => updateParagraph({ _id, tags, name, text: editorState })}>Update</Button>
+            {loggedIn && <Button onClick={() => updateParagraph({ _id, tags, name, text: editorState })}>Update</Button>}
         </>
     );
 };
