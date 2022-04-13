@@ -9,25 +9,24 @@ import { logout } from "./actions/session_actions";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
-  const navbar = {
-    navbar: [
-      {
-        label: "Home",
-        showWhenLoggedOut: true,
-        url: "/"
-      },
-      {
-        label: "Siddur",
-        showWhenLoggedOut: true,
-        url: '/siddur',
-      },
-      {
-        label: "Edit Siddur",
-        showWhenLoggedOut: false,
-        url: '/siddur/edit',
-      },
-    ]
-  };
+  const navbar = [
+    {
+      label: "Home",
+      showWhenLoggedOut: true,
+      url: "/"
+    },
+    {
+      label: "Siddur",
+      showWhenLoggedOut: true,
+      url: '/siddur',
+    },
+    {
+      label: "Edit Siddur",
+      showWhenLoggedOut: false,
+      url: '/siddur/edit',
+    }
+  ];
+  
   // returning signed in user
   if (localStorage.jwtToken) {
     //Set the token as a common header for all axios requests
