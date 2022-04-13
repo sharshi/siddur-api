@@ -1,16 +1,19 @@
 require('dotenv').config()
 const express = require("express");
-const app = express();
-const port = process.env.PORT || 5000;
 const mongoose = require("mongoose");
-const users = require("./routes/api/users");
-const siddur = require("./routes/api/siddur");
 const bodyParser = require("body-parser");
 const passport = require('passport');
 const path = require("path");
+const cors = require("cors");
 
+const users = require("./routes/api/users");
+const siddur = require("./routes/api/siddur");
 const databaseOptions = require("./config/database.config");
 const { mongoURI } = require("./config/keys");
+
+const app = express();
+const port = process.env.PORT || 5000;
+app.use(cors())
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
